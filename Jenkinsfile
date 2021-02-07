@@ -2,16 +2,24 @@ pipeline {
 	agent any
 	stages {
 		stage ('build') {
-			sh 'echo "BUILD STAGE"'
+      steps{
+			  sh 'echo "BUILD STAGE"'
+      }
 		}
 		stage ('test') {
-			sh 'echo "TEST"'
+			steps{
+        sh 'echo "TEST"'
+      }
 		}
 		stage ('approval') {
-			sh 'echo "APPROVAL"'
+			steps{
+        sh 'echo "APPROVAL"'
+      }
 		}
 		stage ('deploy') {
-			sh 'echo "DEPLOY"'
+      steps{
+			  sh 'echo "DEPLOY"'
+      }
 		}
 	}
 }
