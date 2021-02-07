@@ -7,12 +7,16 @@ pipeline {
     stage ('build') {
       steps{
         sh 'echo "BUILD STAGE"'
-        sh 'echo ${GOOGLE_APPLICATION_CREDENTIALS}'
+        checkout scm
       }
     }
     stage ('test') {
       steps{
-        sh 'echo "TEST"'
+        container('terraform'){
+          sh 'echo "TEST"'
+          sh 'terraform version'
+          sh 'terraform init'
+        }
       }
     }
     stage ('approval') {
