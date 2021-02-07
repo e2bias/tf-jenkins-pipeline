@@ -8,7 +8,8 @@ pipeline {
       steps {
         sh 'echo "BUILD STAGE"'
         checkout scm
-        sh 'printenv'
+        sh 'export ${GOOGLE_APPLICATION_CREDENTIALS}'
+        sh 'printenv | grep GOOGLE' 
       }
     }
     stage ('test') {
@@ -16,7 +17,6 @@ pipeline {
         container('terraform') {
           sh 'echo "TEST"'
           sh 'terraform version'
-          sh 'terraform init'
         }
       }
     }
