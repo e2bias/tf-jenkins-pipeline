@@ -13,11 +13,15 @@ pipeline {
       }
     }
     stage ('test') {
+      agent {
+        kubernetes {
+          defaultContainer 'terraform'
+          inheritFrom 'default'
+        }
+      }
       steps {
-        container('terraform') {
           sh 'echo "TEST"'
           sh 'terraform version'
-        }
       }
     }
     stage ('approval') {
