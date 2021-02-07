@@ -1,18 +1,19 @@
 pipeline {
   agent any
-  environment{
+  environment {
     GOOGLE_APPLICATION_CREDENTIALS = credentials('gcp-terraform-svc-key')
   }
   stages {
     stage ('build') {
-      steps{
+      steps {
         sh 'echo "BUILD STAGE"'
         checkout scm
+        sh 'printenv'
       }
     }
     stage ('test') {
-      steps{
-        container('terraform'){
+      steps {
+        container('terraform') {
           sh 'echo "TEST"'
           sh 'terraform version'
           sh 'terraform init'
@@ -20,12 +21,12 @@ pipeline {
       }
     }
     stage ('approval') {
-      steps{
+      steps {
         sh 'echo "APPROVAL"'
       }
     }
     stage ('deploy') {
-      steps{
+      steps {
         sh 'echo "DEPLOY"'
       }
     }
