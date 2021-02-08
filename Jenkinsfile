@@ -8,7 +8,6 @@ pipeline {
       steps {
         sh 'echo "BUILD STAGE"'
         checkout scm
-        sh 'export ${GOOGLE_APPLICATION_CREDENTIALS}'
         sh 'printenv | grep GOOGLE' 
       }
     }
