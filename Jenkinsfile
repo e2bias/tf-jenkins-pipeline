@@ -12,7 +12,6 @@ pipeline {
       }
     }
     stage ('test') {
-      }
       steps {
         container('terraform') {
           sh 'echo "TEST"'
